@@ -15,7 +15,7 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long employeeId;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)		
     @JoinColumn(name = "user_id", nullable = false, unique = true)
     @JsonManagedReference
     private User user;
@@ -48,11 +48,9 @@ public class Employee {
 
     @OneToMany(mappedBy = "employee", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<PayrollItem> payrollItems;
-////
-//    @OneToMany(mappedBy = "employee", fetch = FetchType.LAZY)
-//    private List<com.example.payrollsystem.entities.Leave> leaves; // leave entity added later
 
-    // getters & setters
+
+  
     public Long getEmployeeId() { return employeeId; }
     public void setEmployeeId(Long employeeId) { this.employeeId = employeeId; }
 
@@ -89,7 +87,5 @@ public class Employee {
 	}
 	}
 
-//
-//    public List<com.example.payrollsystem.entities.Leave> getLeaves() { return leaves; }
-//    public void setLeaves(List<com.example.payrollsystem.entities.Leave> leaves) { this.leaves = leaves; }
-//}
+
+

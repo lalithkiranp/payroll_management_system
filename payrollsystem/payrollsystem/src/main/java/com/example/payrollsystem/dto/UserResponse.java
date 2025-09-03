@@ -10,6 +10,10 @@ public class UserResponse {
     private String jobRole;
     private String departmentName;
     private Long employeeId; //
+    
+    private String dob;      // or LocalDate depending on your entity
+    private String address;
+   
 
     // getters & setters
     public Long getUserId() { return userId; }
@@ -35,5 +39,15 @@ public class UserResponse {
 	}
 	public void setEmployeeId(Long employeeId) {
 		this.employeeId = employeeId;
+		
+		
 	}
+	public String getDob() { return dob; }
+    public void setDob(String dob) { this.dob = dob; }
+
+    public String getAddress() { return address; }
+    public void setAddress(String address) { this.address = address; }
+
+   
+	
 }

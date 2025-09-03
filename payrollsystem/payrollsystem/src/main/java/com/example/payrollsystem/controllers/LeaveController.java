@@ -20,26 +20,26 @@ public class LeaveController {
     }
 
     
- // Admin gets all leave requests
+ 
     @GetMapping
     public ResponseEntity<List<LeaveResponseDTO>> getAllLeaves() {
         return ResponseEntity.ok(leaveService.getAllLeaves());
     }
 
     
-    // Employee applies for leave
+    
     @PostMapping
     public ResponseEntity<LeaveResponseDTO> applyLeave(@RequestBody LeaveRequestDTO dto) {
         return ResponseEntity.ok(leaveService.applyLeave(dto));
     }
 
-    // Employee views their leave requests
+   
     @GetMapping("/employee/{employeeId}")
     public ResponseEntity<List<LeaveResponseDTO>> getEmployeeLeaves(@PathVariable Long employeeId) {
         return ResponseEntity.ok(leaveService.getEmployeeLeaves(employeeId));
     }
 
-    // Admin updates leave status
+  
     @PutMapping("/{leaveId}/status")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<LeaveResponseDTO> updateLeaveStatus(

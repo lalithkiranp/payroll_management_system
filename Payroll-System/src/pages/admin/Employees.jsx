@@ -9,6 +9,7 @@ export default function Employees() {
   const [loading, setLoading] = useState(true);
 
   const [form, setForm] = useState({
+    userId: "",                                           // removeit iff not working
     firstName: "",
     lastName: "",
     email: "",
@@ -23,7 +24,7 @@ export default function Employees() {
   const [editingId, setEditingId] = useState(null);
   const [showForm, setShowForm] = useState(false);
 
-  // Fetch employees, jobs, and departments
+
   const fetchEmployees = async () => {
     setLoading(true);
     try {
@@ -54,7 +55,7 @@ export default function Employees() {
     fetchJobsAndDepartments();
   }, []);
 
-  // Delete employee
+ 
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to delete this employee?")) return;
 
@@ -67,9 +68,10 @@ export default function Employees() {
     }
   };
 
-  // Open form for edit
+  
   const handleEdit = (emp) => {
     setForm({
+      userId: emp.userId || "",
       firstName: emp.firstName,
       lastName: emp.lastName,
       email: emp.email,
@@ -131,6 +133,18 @@ export default function Employees() {
         <div className="card p-3 mb-4">
           <h5>{editingId ? "Edit Employee" : "Add Employee"}</h5>
           <form onSubmit={handleSubmit}>
+            <div className="row">
+  <div className="col-md-6 mb-2">
+    <input
+      type="number"
+      className="form-control"
+      placeholder="User ID"
+      value={form.userId}
+      onChange={(e) => setForm({ ...form, userId: e.target.value })}
+      required
+    />
+  </div>
+</div>
             <div className="row">
               <div className="col-md-6 mb-2">
                 <input
@@ -272,9 +286,11 @@ export default function Employees() {
             <th>Name</th>
             <th>Email</th>
             <th>Phone</th>
-            <th>Designation</th>
-            <th>Department</th>
+            {/* <th>Designation</th> */}
             <th>Job</th>
+            <th>Department</th>
+            
+      
             <th>Actions</th>
           </tr>
         </thead>
@@ -286,9 +302,11 @@ export default function Employees() {
                 <td>{emp.firstName} {emp.lastName}</td>
                 <td>{emp.email}</td>
                 <td>{emp.phone}</td>
-                <td>{emp.designation}</td>
-                <td>{emp.departmentName}</td>
+                {/* <td>{emp.designation}</td> */}
                 <td>{emp.jobTitle}</td>
+                <td>{emp.departmentName}</td>
+                
+          
                 <td>
                   <button
                     className="btn btn-sm btn-warning me-2"

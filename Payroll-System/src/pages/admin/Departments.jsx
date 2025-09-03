@@ -1,4 +1,4 @@
-// src/pages/admin/Departments.jsx
+
 import { useEffect, useState } from "react";
 import api from "../../api/axios";
 
@@ -6,7 +6,7 @@ export default function Departments() {
   const [departments, setDepartments] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Form state for add/edit
+  
   const [form, setForm] = useState({
     name: "",
     description: "",
@@ -14,7 +14,6 @@ export default function Departments() {
   const [editingId, setEditingId] = useState(null);
   const [showForm, setShowForm] = useState(false);
 
-  // Fetch all departments
   const fetchDepartments = () => {
     setLoading(true);
     api.get("/departments")
@@ -32,7 +31,7 @@ export default function Departments() {
     fetchDepartments();
   }, []);
 
-  // Delete department
+ 
   const handleDelete = (id) => {
     if (!window.confirm("Are you sure you want to delete this department?")) return;
 
@@ -50,7 +49,7 @@ export default function Departments() {
       });
   };
 
-  // Open form for edit
+
   const handleEdit = (dep) => {
     setForm({
       name: dep.name,
@@ -60,7 +59,6 @@ export default function Departments() {
     setShowForm(true);
   };
 
-  // Open form for add
   const handleAdd = () => {
     setForm({
       name: "",
@@ -70,7 +68,7 @@ export default function Departments() {
     setShowForm(true);
   };
 
-  // Submit form (add or edit)
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     if (editingId) {
@@ -101,7 +99,7 @@ export default function Departments() {
         Add Department
       </button>
 
-      {/* Department Form */}
+
       {showForm && (
         <div className="card p-3 mb-4">
           <h5>{editingId ? "Edit Department" : "Add Department"}</h5>
@@ -140,7 +138,7 @@ export default function Departments() {
         </div>
       )}
 
-      {/* Department Table */}
+
       <table className="table table-bordered table-striped">
         <thead className="table-dark">
           <tr>

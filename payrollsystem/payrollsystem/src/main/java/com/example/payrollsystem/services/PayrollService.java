@@ -32,7 +32,7 @@ public class PayrollService {
     private final PayrollItemRepository itemRepo;
     private final EmployeeRepository empRepo;
 
-    private static final double TAX = 2000.0; // fixed tax deduction
+   
 
     public PayrollService(PayrollRunRepository runRepo, PayrollItemRepository itemRepo, EmployeeRepository empRepo) {
         this.runRepo = runRepo;
@@ -62,14 +62,12 @@ public class PayrollService {
             PayrollItem item = new PayrollItem();
             item.setPayrollRun(run);
 
-            // Instead of storing Employee entity, store minimal info
+         
             item.setEmployee(emp);
            
 
             double basic = emp.getJob().getBasicPay();
-//            double bonus = 0; 
-//            double deductions = TAX;
-            // 🔹 Bonus Logic
+           
             double bonus;
             if (basic > 50000) {
                 bonus = basic * 0.10;
@@ -79,7 +77,7 @@ public class PayrollService {
                 bonus = basic * 0.02;
             }
 
-            // 🔹 Tax Logic
+           
             double deductions;
             if (basic <= 25000) {
                 deductions = basic * 0.05;

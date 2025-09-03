@@ -1,4 +1,4 @@
-// src/pages/auth/Login.jsx
+
 import { useContext } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -36,7 +36,14 @@ export default function Login() {
   };
 
   return (
-    <div className="d-flex vh-100 justify-content-center align-items-center bg-light">
+    
+    <div
+  className="d-flex flex-column vh-100 justify-content-center align-items-center"
+  style={{ backgroundColor: "rgb(0, 75, 121)" }}
+>
+  <h1 className="mb-4 text-white fw-bold">
+  Payroll Management
+</h1>
       <div className="card p-4 shadow-lg" style={{ width: "400px" }}>
         <h3 className="text-center mb-4">Login</h3>
         <Formik

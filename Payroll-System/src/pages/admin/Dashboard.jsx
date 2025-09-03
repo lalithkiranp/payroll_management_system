@@ -1,4 +1,4 @@
-// src/pages/admin/AdminDashboard.jsx
+
 import { useEffect, useState } from "react";
 import { FaUsers, FaBriefcase, FaBuilding } from "react-icons/fa";
 import api from "../../api/axios";
@@ -12,7 +12,6 @@ export default function AdminDashboard() {
   });
   const [loading, setLoading] = useState(true);
 
-  // Form state for adding new user
   const [newUser, setNewUser] = useState({
     username: "",
     email: "",
@@ -102,7 +101,7 @@ export default function AdminDashboard() {
         </div>
       </div>
 
-      {/* Admin Details */}
+      
       {admin && (
         <div className="mb-4">
           <h4>Logged-in Admin Details</h4>
@@ -129,7 +128,7 @@ export default function AdminDashboard() {
         </div>
       )}
 
-      {/* Add New User Form */}
+    
       <div className="mb-5">
         <h4>Add New User</h4>
         <form onSubmit={handleAddUser}>

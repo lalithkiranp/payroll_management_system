@@ -32,17 +32,8 @@ public class UserController {
         }
     }
 
-//    @GetMapping("/me")
-//    public ResponseEntity<?> getMe(@RequestHeader("Authorization") String authHeader) {
-//        // Basic: parse token and respond with user info (or use principal)
-//        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
-//            return ResponseEntity.status(401).body("Missing token");
-//        }
-//        // For simplicity, use JwtUtil to parse token
-//        // Alternatively, use SecurityContextHolder
-//        return ResponseEntity.ok("Use /api/v1/users/me with SecurityContext (will implement later)");
-//    }
-    
+
+
     @GetMapping("/me")
     public ResponseEntity<?> getMe() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -58,23 +49,9 @@ public class UserController {
             return ResponseEntity.status(404).body("User not found");
         }
 
-        User user = optUser.get();
-
-        UserResponse resp = new UserResponse();
-        resp.setUserId(user.getUserId());
-        resp.setUsername(user.getUsername());
-        resp.setEmail(user.getEmail());
-        resp.setRole(user.getRole());
-
-        if ("EMPLOYEE".equalsIgnoreCase(user.getRole()) && user.getEmployee() != null) {
-        	resp.setEmployeeId(user.getEmployee().getEmployeeId()); //
-            resp.setJobRole(user.getEmployee().getDesignation());
-            if (user.getEmployee().getDepartment() != null) {
-                resp.setDepartmentName(user.getEmployee().getDepartment().getName());
-            }
-        }
-
+        UserResponse resp = userService.mapToResponse(optUser.get());
         return ResponseEntity.ok(resp);
     }
+
     
 }

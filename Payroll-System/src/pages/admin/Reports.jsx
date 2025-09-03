@@ -1,4 +1,4 @@
-// src/pages/admin/Reports.jsx
+
 import { useEffect, useState } from "react";
 import api from "../../api/axios";
 import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
@@ -39,7 +39,7 @@ export default function Reports() {
     <div className="container">
       <h2 className="mb-4">Reports</h2>
 
-      {/* Year & Month Selector */}
+    
       <div className="mb-3 d-flex gap-2 align-items-center">
         <label>Year:</label>
         <select value={year} onChange={(e) => setYear(e.target.value)}>
@@ -56,7 +56,7 @@ export default function Reports() {
         </select>
       </div>
 
-      {/* Payroll Summary */}
+    
       {summary && (
         <div className="mb-5">
           <h4>Payroll Summary</h4>
@@ -87,7 +87,7 @@ export default function Reports() {
         </div>
       )}
 
-      {/* Department Cost Pie Chart */}
+
       {departmentCosts.length > 0 && (
         <div>
           <h4>Department Cost Distribution</h4>
@@ -114,3 +114,4 @@ export default function Reports() {
     </div>
   );
 }
+

@@ -30,7 +30,7 @@ public class SecurityConfig {
 
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
-        // This will pick up authentication providers registered in the context
+
         return config.getAuthenticationManager();
     }
 
@@ -39,7 +39,7 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-    // IMPORTANT: register a DaoAuthenticationProvider wired with your UserDetailsService and PasswordEncoder
+    
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
@@ -61,7 +61,7 @@ public class SecurityConfig {
                 .requestMatchers("/api/v1/auth/**", "/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
                 .anyRequest().authenticated()
             )
-            // register the authentication provider so AuthenticationManager can use it
+            
             .authenticationProvider(authenticationProvider())
             .addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
 

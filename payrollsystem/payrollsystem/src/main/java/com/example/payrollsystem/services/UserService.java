@@ -3,6 +3,7 @@ package com.example.payrollsystem.services;
 import com.example.payrollsystem.dto.UserRequest;
 import com.example.payrollsystem.dto.UserResponse;
 import com.example.payrollsystem.entities.User;
+import com.example.payrollsystem.repositories.EmployeeRepository;
 import com.example.payrollsystem.repositories.UserRepository;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -15,9 +16,11 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder passwordEncoder;
-
-    public UserService(UserRepository userRepository) {
+    private final EmployeeRepository employeeRepository;		//
+    
+    public UserService(UserRepository userRepository , EmployeeRepository employeeRepository) {
         this.userRepository = userRepository;
+        this.employeeRepository = employeeRepository;
         this.passwordEncoder = new BCryptPasswordEncoder();
     }
 
@@ -51,4 +54,31 @@ public class UserService {
     public Optional<User> findById(Long id) {
         return userRepository.findById(id);
     }
+ 
+    public UserResponse mapToResponse(User user) {
+        UserResponse resp = new UserResponse();
+        resp.setUserId(user.getUserId());
+        resp.setUsername(user.getUsername());
+        resp.setEmail(user.getEmail());
+        resp.setRole(user.getRole());
+
+        if ("EMPLOYEE".equalsIgnoreCase(user.getRole()) && user.getEmployee() != null) {
+            resp.setEmployeeId(user.getEmployee().getEmployeeId());
+            resp.setJobRole(user.getEmployee().getDesignation());
+
+            if (user.getEmployee().getDepartment() != null) {
+                resp.setDepartmentName(user.getEmployee().getDepartment().getName());
+            }
+
+            if (user.getEmployee().getDob() != null) {
+                resp.setDob(user.getEmployee().getDob().toString()); 
+            }
+            resp.setAddress(user.getEmployee().getAddress());
+        
+        }
+
+        return resp;
+    }
+    
+    
 }
