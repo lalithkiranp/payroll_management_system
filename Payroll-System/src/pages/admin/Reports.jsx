@@ -8,7 +8,7 @@ export default function Reports() {
   const [departmentCosts, setDepartmentCosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [year, setYear] = useState(new Date().getFullYear());
-  const [month, setMonth] = useState(new Date().getMonth() + 1); // 1-12
+  const [month, setMonth] = useState(new Date().getMonth() + 1); 
 
   useEffect(() => {
     fetchReports();

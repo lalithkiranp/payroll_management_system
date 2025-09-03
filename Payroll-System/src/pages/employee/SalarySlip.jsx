@@ -32,7 +32,7 @@ export default function SalarySlip() {
     fetchSalarySlip();
   }, [year, month]);
 
-  // Extra actions
+  
   const handlePrint = () => window.print();
  
 
@@ -40,7 +40,7 @@ export default function SalarySlip() {
     <div className="container mt-4">
       <h2 className="mb-4"> Salary Slip</h2>
 
-      {/* Month & Year selector */}
+    
       <div className="row mb-4">
         <div className="col-md-3">
           <label className="form-label fw-semibold">Year</label>
@@ -128,7 +128,7 @@ export default function SalarySlip() {
             </tbody>
           </table>
 
-          {/* Actions */}
+    
           <div className="d-flex gap-2 mt-3">
             
             <button className="btn btn-outline-secondary" onClick={handlePrint}>

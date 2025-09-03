@@ -15,7 +15,7 @@ export default function EmployeeDashboard() {
   const [employee, setEmployee] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // Fetch logged-in employee details
+ 
   const fetchEmployee = async () => {
     try {
       const res = await api.get("/users/me");
@@ -45,7 +45,7 @@ export default function EmployeeDashboard() {
           background: "linear-gradient(135deg, #f8f9fa, #e9ecef)",
         }}
       >
-        {/* Profile Header */}
+      
         <div className="text-center mb-4">
           <div
             className="rounded-circle d-flex align-items-center justify-content-center mx-auto shadow"
@@ -65,7 +65,6 @@ export default function EmployeeDashboard() {
           </span>
         </div>
 
-        {/* Profile Details */}
         <div className="row g-4 mt-2">
           <ProfileItem
             icon={<FaEnvelope />}
@@ -103,7 +102,7 @@ export default function EmployeeDashboard() {
   );
 }
 
-// Reusable ProfileItem component
+
 function ProfileItem({ icon, label, value }) {
   return (
     <div className="col-12 col-md-6">

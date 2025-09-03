@@ -2,7 +2,7 @@
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
-import { FaMoneyCheckAlt, FaSignOutAlt } from "react-icons/fa"; // icons
+import { FaMoneyCheckAlt, FaSignOutAlt } from "react-icons/fa"; 
 
 export default function Navbar() {
   const { user, logout } = useContext(AuthContext);
@@ -15,7 +15,7 @@ export default function Navbar() {
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm px-4 py-2">
-      {/* Brand */}
+    
       <Link
         className="navbar-brand fw-bold fs-4 d-flex align-items-center"
         to="/"
